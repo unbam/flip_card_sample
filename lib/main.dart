@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,8 +20,15 @@ class MyApp extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                   child: FlipCard(
+                    speed: 500,
                     direction: FlipDirection.HORIZONTAL,
                     flipOnTouch: true,
+                    onFlip: () {
+                      print('onFlip');
+                    },
+                    onFlipDone: (isFront) {
+                      print('onFlipDone:$isFront');
+                    },
                     front: Card(
                       color: Colors.cyan,
                       shape: RoundedRectangleBorder(
@@ -33,11 +39,18 @@ class MyApp extends StatelessWidget {
                       margin: EdgeInsets.all(12.0),
                       child: Padding(
                         padding: EdgeInsets.all(15.0),
-                        child: Center(
-                          child: Text(
-                            'front',
-                            style: TextStyle(fontSize: 25.0),
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'front',
+                              style: TextStyle(fontSize: 25.0),
+                            ),
+                            Text(
+                              '縦回転',
+                              style: TextStyle(fontSize: 15.0),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -51,11 +64,14 @@ class MyApp extends StatelessWidget {
                       margin: EdgeInsets.all(12.0),
                       child: Padding(
                         padding: EdgeInsets.all(15.0),
-                        child: Center(
-                          child: Text(
-                            'back',
-                            style: TextStyle(fontSize: 25.0),
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'back',
+                              style: TextStyle(fontSize: 25.0),
+                            ),
+                          ],
                         ),
                       ),
                     ),
